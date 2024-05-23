@@ -12,7 +12,12 @@ class Server {
     this.app = express();
     this.mongo = new MongoDB();
     this.app.use(express.json());
-    this.app.use(cors(configService.express.cors));
+    // this.app.use(cors(configService.express.cors));
+    this.app.use(
+      cors({
+        origin: "*",
+      })
+    );
   }
 
   async init(): Promise<void> {

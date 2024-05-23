@@ -1,6 +1,6 @@
 export interface UserEntity {
   name: string;
-  dateofBirth: String;
+  dateofBirth: string;
   email: string;
   pass: string;
 }
