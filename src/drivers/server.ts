@@ -1,7 +1,8 @@
 import express, { Express, Request, Response } from "express";
 import MongoDB from "../lib/mongo";
-import config from "../config";
+import configService from "../config";
 import cors from "cors";
+import JWTMiddleware from "../middleware/jwt.middleware";
 
 class Server {
   private app: Express;
@@ -11,7 +12,7 @@ class Server {
     this.app = express();
     this.mongo = new MongoDB();
     this.app.use(express.json());
-    this.app.use(cors(config.express.cors));
+    this.app.use(cors(configService.express.cors));
   }
 
   async init(): Promise<void> {
@@ -26,8 +27,8 @@ class Server {
 
   public start(): void {
     this.init().then(() => {
-      this.app.listen(config.express.port, () => {
-        console.log(`Server is running on port ${config.express.port}`);
+      this.app.listen(configService.express.port, () => {
+        console.log(`Server is running on port ${configService.express.port}`);
       });
     });
   }
@@ -37,6 +38,12 @@ class Server {
     handler: (req: Request, res: Response) => void
   ): void {
     this.app.post(router, handler);
+  }
+  public getRoute(
+    router: string,
+    handler: (req: Request, res: Response) => void
+  ): void {
+    this.app.get(router, JWTMiddleware.verifyToken, handler);
   }
 }
 

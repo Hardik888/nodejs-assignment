@@ -39,7 +39,7 @@ const configService: Config = {
       xXssProtection: true,
     },
     jwt: {
-      secret: "cyber_cat",
+      secret: process.env.secret!,
     },
   },
 };

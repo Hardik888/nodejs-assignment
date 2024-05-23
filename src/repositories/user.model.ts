@@ -1,14 +1,14 @@
-import { Collection, Document, Filter, FindOptions } from "mongodb";
+import { Collection, Document, Filter, FindOptions, ObjectId } from "mongodb";
 import MongoDB from "../lib/mongo";
 import { UserEntity } from "./user.interface";
-import config from "../config";
+import configService from "../config";
 import { isValidUserEntity } from "./user.validation";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
 
 export class UserModel extends MongoDB {
   private collection: Collection<UserEntity>;
-  private readonly jwtsecret = config.express.jwt.secret;
+  private readonly jwtsecret = configService.express.jwt.secret;
 
   constructor() {
     super();
@@ -46,6 +46,7 @@ export class UserModel extends MongoDB {
       if (!isPasswordValid) {
         throw new Error("Invalid email or password");
       }
+      console.log(this.jwtsecret);
 
       const token = jwt.sign(
         { userId: existingUser._id, email: existingUser.email },
@@ -74,5 +75,21 @@ export class UserModel extends MongoDB {
         limit,
       }
     );
+  }
+  async getByEmail(email: string) {
+    try {
+      const user = await this.collection.findOne({ email });
+      if (!user) {
+        console.error("User not found for email:", email);
+      }
+      return {
+        username: user?.name,
+        email: user?.email,
+        dob: user?.dateofBirth,
+      };
+    } catch (error) {
+      console.error("Error retrieving user by email:", error);
+      return null;
+    }
   }
 }
