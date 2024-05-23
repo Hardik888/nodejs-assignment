@@ -1,0 +1,101 @@
+/* General Styles */
+.container {
+  margin-top: 100px;
+  display: flex;
+  align-items: space-between; /* 'space' is not a valid value for align-items */
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header .text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.header .underline {
+  width: 200px;
+  height: 4px;
+  background-color: #007bff;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
+}
+
+.card-header {
+  background-color: #4c00b4;
+  color: white;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 15px;
+  margin-top: 0px;
+}
+
+.card-body {
+  padding: 55px;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #4c00b4;
+  margin-bottom: 25px;
+}
+
+.card-text {
+  font-size: 16px;
+  font-weight: bold;
+  color: gray;
+  margin-bottom: 15px;
+}
+
+/* User Image Styles */
+.user-image {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+/* Grid Styles */
+.row {
+  margin-bottom: 20px;
+}
+
+.col-md-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-md-9 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Margins */
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}

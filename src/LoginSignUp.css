@@ -18,11 +18,7 @@
   font-size: 48px;
   font-weight: 700;
 }
-.underline {
-  width: 61px;
-  height: 6px;
-  background-color: #3c009d;
-}
+
 .inputs {
   margin-top: 55px;
   display: flex;
